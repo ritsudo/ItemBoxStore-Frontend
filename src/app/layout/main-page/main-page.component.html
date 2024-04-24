@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="items-grid" >
+      <div class="item"  *ngFor="let item of items">
+        <img src="/assets/images_local/{{item.mainImageId}}" alt="Item 1">
+        <h3>{{item.name}}</h3>
+        <p class="price">{{item.price}}.00₽</p>
+<!--        <button (click)="addToCart(item)">Добавить в корзину</button>-->
+      </div>
+    </div>
+  </div>
+
+<footer>
+    <p>&copy; 04-2024 <a href="https://github.com/ritsudo">ritsudo</a></p>
+</footer>
