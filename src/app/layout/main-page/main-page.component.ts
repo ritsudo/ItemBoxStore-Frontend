@@ -28,10 +28,20 @@ export class MainPageComponent {
   items: Item[] = [];
   updatedItems: Item[] = [];
 
+  currentPage: number = 1;
+  batchSize: number = 10;
+
+  totalPages: number = 0;
+
+  options: number[] = [2,5,10,20,50];
+
+  sortOptionId: number = 0;
+  sortOptions: number[] = [0,1,2,3,4];
+  sortOptionNames: string[] = ['По умолчанию','Сначала новые','Сначала старые','Сначала менее дорогие','Сначала более дорогие'];
+
   searchTerm: string = '';
 
-  updateValues(): void {
-    
+  updateById(): void {
     this.itemService.getItemsByName(this.searchTerm).subscribe(response => {
       this.result = response;
       this.items.splice(0, this.items.length);
@@ -44,10 +54,54 @@ export class MainPageComponent {
     });
   }
 
+  updateByPage(): void {
+    this.itemService.getItemsWithPagination(this.currentPage, this.batchSize).subscribe(response => {
+      this.result = response;
+      console.log(this.result);
+      this.items.splice(0, this.items.length);
+      this.updatedItems = response.result;
+      this.totalPages = response.totalPages;
+      console.log(this.updatedItems);
+      for (let i = 0; i < this.updatedItems.length; i+=1) {
+        this.items.push(new Item(this.updatedItems[i].id, this.updatedItems[i].name, this.updatedItems[i].subCategoryId, this.updatedItems[i].location, this.updatedItems[i].price, this.updatedItems[i].mainImageId
+        ));
+      }
+    });
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage -= 1;
+    } else {
+      this.currentPage = 1;
+    }
+    this.updateByPage();
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage += 1;
+    } else {
+      this.currentPage = this.totalPages;
+    }
+    this.updateByPage();
+  }
+
+  confirmSelection(): void {
+    this.updateByPage();
+  }
+
+  confirmSortSelection(): void {
+    //TODO
+    console.log(this.sortOptionId);
+//    this.updateByPage();
+  }
+
   ngOnInit(): void {
-    this.itemService.getItems().subscribe(response => {
+    this.itemService.getItemsWithPagination(this.currentPage, this.batchSize).subscribe(response => {
       this.result = response;
       this.items = response.result;
+      this.totalPages = response.totalPages;
     });
   }
 }

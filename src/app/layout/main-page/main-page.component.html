@@ -1,22 +1,46 @@
 <div class="container">
 
   <div class="search-container">
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Введите название.." class="search-input" (keydown.enter)="updateValues()">
-    <button (click)="updateValues()" class="search-button">Поиск</button>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Введите название.." class="search-input"
+      (keydown.enter)="updateById()">
+    <button (click)="updateById()" class="search-button">Поиск</button>
   </div>
 
-    <div class="items-grid" >
-      <div class="item"  *ngFor="let item of items">
-        <img src="{{apiUrl}}/StorageFile/{{item.mainImageId}}" width="300" height="300" alt="Item 1">
-        <h2>{{item.name}}</h2>
-        <p class="price">{{item.price}}.00₽</p>
-        <p><b>{{category[item.subCategoryId]}}</b><br/>
+  <div class="show-by-dropdown-right">
+    <p>Сортировка:</p>
+    <select [(ngModel)]="sortOptionId">
+      <option *ngFor="let option of sortOptions" [value]="option">{{sortOptionNames[option]}}</option>
+    </select>
+    <button (click)="confirmSortSelection()">Применить</button>
+  </div>
+
+  <div class="items-grid">
+    <div class="item" *ngFor="let item of items">
+      <img src="{{apiUrl}}/StorageFile/{{item.mainImageId}}" width="300" height="300" alt="Item 1">
+      <h2>{{item.name}}</h2>
+      <p class="price">{{item.price}}.00₽</p>
+      <p><b>{{category[item.subCategoryId]}}</b><br />
         {{item.location}}</p>
-<!--        <button (click)="addToCart(item)">Добавить в корзину</button>-->
-      </div>
     </div>
   </div>
 
+  <div class="paginator">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Назад</button>
+    <span>{{currentPage}} / {{totalPages}}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Далее</button>
+  </div>
+
+  <div class="show-by-dropdown">
+    <p>Показывать по:</p>
+    <select [(ngModel)]="batchSize">
+      <option *ngFor="let option of options" [value]="option">{{option}}</option>
+    </select>
+    <button (click)="confirmSelection()">Подтвердить</button>
+  </div>
+
+</div>
+
+
 <footer>
-    <p>&copy; 04-2024 <a href="https://github.com/ritsudo">Victor</a></p>
+  <p>&copy; 04-2024 <a href="https://github.com/ritsudo">Victor</a></p>
 </footer>
