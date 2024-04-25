@@ -13,8 +13,8 @@ export class ItemService {
     private http: HttpClient
   ) { }
 
-  getItemsWithPagination(page: number, batchSize: number) {
-    return this.http.get<any>(`${this.apiUrl}/Item/all?PageNumber=${page}&BatchSize=${batchSize}`);
+  getItemsWithPagination(page: number, batchSize: number, sortOptionId: number) {
+    return this.http.get<any>(`${this.apiUrl}/Item/all?PageNumber=${page}&BatchSize=${batchSize}&SortMode=${sortOptionId}`);
   }
 
   getItemsByName(name: string) {

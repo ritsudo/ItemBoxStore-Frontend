@@ -36,8 +36,8 @@ export class MainPageComponent {
   options: number[] = [2,5,10,20,50];
 
   sortOptionId: number = 0;
-  sortOptions: number[] = [0,1,2,3,4];
-  sortOptionNames: string[] = ['По умолчанию','Сначала новые','Сначала старые','Сначала менее дорогие','Сначала более дорогие'];
+  sortOptions: number[] = [0,1,2];
+  sortOptionNames: string[] = ['По умолчанию','По имени','По стоимости'];
 
   searchTerm: string = '';
 
@@ -55,7 +55,7 @@ export class MainPageComponent {
   }
 
   updateByPage(): void {
-    this.itemService.getItemsWithPagination(this.currentPage, this.batchSize).subscribe(response => {
+    this.itemService.getItemsWithPagination(this.currentPage, this.batchSize, this.sortOptionId).subscribe(response => {
       this.result = response;
       console.log(this.result);
       this.items.splice(0, this.items.length);
@@ -92,13 +92,11 @@ export class MainPageComponent {
   }
 
   confirmSortSelection(): void {
-    //TODO
-    console.log(this.sortOptionId);
-//    this.updateByPage();
+    this.updateByPage();
   }
 
   ngOnInit(): void {
-    this.itemService.getItemsWithPagination(this.currentPage, this.batchSize).subscribe(response => {
+    this.itemService.getItemsWithPagination(this.currentPage, this.batchSize, this.sortOptionId).subscribe(response => {
       this.result = response;
       this.items = response.result;
       this.totalPages = response.totalPages;
