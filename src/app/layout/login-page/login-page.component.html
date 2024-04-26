@@ -1,1 +1,17 @@
-<p>login-page works!</p>
+<form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="login">Логин:</label>
+      <input type="text" id="login" name="login" [(ngModel)]="formData.login" required>
+    </div>
+    <div>
+      <label for="password">Пароль:</label>
+      <input type="text" id="password" name="password" [(ngModel)]="formData.password" type="password" required>
+    </div>
+    <button type="submit">Войти</button>
+  </form>
+
+  <div style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center">
+    <div *ngIf="responseMessage" style="text-align: center">{{ responseMessage }}</div>
+    <div *ngIf="nextButtonShown"><button (click)="continueAuthorization()" type="submit">Сохранить токен</button></div>
+  </div>
+  

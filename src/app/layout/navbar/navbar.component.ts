@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { backendUrl } from '../../app.config';
 
 @Component({
   selector: 'app-navbar',
@@ -9,5 +10,6 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-
+  
+  apiUrl = backendUrl;
 }

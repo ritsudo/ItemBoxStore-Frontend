@@ -1,10 +1,11 @@
 <nav class="flex justify-between items-center p-4 border-b border-gray-200 bg-blue-300">
     <div class="flex items-center space-x-2">
-      <div class="text-2xl font-bold">МАГАЗИН</div>
+      <a routerLink="/" class="text-2xl font-bold">МАГАЗИН</a>
       <a routerLink="/" class="text-xl font-bold">ВСЕ ТОВАРЫ</a>
       <a routerLink="/register" class="text-xl font-bold">РЕГИСТРАЦИЯ</a>
       <a routerLink="/login" class="text-xl font-bold">ВХОД</a>
       <a routerLink="/create" class="text-xl font-bold">ДОБАВИТЬ</a>
+      <a href="{{apiUrl}}/swagger/index.html" class="text-xl font-bold" style="color: #b60000">SWAGGER</a>
     </div>
     <div class="flex items-center space-x-4 grip-gap-1">
         <div class="">Текущая длина токена JWT: 0</div>
