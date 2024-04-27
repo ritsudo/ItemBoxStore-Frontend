@@ -12,6 +12,8 @@
 
   <div style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center">
     <div *ngIf="responseMessage" style="text-align: center">{{ responseMessage }}</div>
-    <div *ngIf="nextButtonShown"><button (click)="continueAuthorization()" type="submit">Сохранить токен</button></div>
+    <div *ngIf="nextButtonShown">
+      <a href="/">На главную</a>
+    </div>
   </div>
   

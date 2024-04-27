@@ -12,7 +12,7 @@ export class RegisterContract {
         name: string,
         phone: string,
         password: string,
-        confirmPassword: string,
+        confirmPassword: string
         ) {
       this.login = login;
       this.email = email;

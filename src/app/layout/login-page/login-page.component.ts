@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { LoginContract } from '../../contracts/loginContract';
 import { LoginService } from '../../services/login/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  providers: [CookieService],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
@@ -22,15 +24,19 @@ export class LoginPageComponent {
 
   nextButtonShown: boolean = false;
 
+  responseToken: string = '';
+
 
   constructor (
     private loginService: LoginService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private cookieService: CookieService,
+  ) {
   }
 
   continueAuthorization() {
-    //save token to cookie
+    this.cookieService.set('JWT', this.responseToken);
   }
 
   onSubmit() {
@@ -39,7 +45,9 @@ export class LoginPageComponent {
     .subscribe(
       response => {
         console.log(response);
-      this.responseMessage = `HTTP вход успешен, токен JWT получен. Длина токена: ${response.token.length}`;
+      this.responseMessage = `HTTP вход успешен, токен JWT получен. Длина токена: ${response.token.length}. Токен: ${response.token.substring(0, 10)}...`;
+      this.responseToken = response.token;
+      this.cookieService.set('JWT', this.responseToken);
       this.nextButtonShown = true;
     },
     error => {

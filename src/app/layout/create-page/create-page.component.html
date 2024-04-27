@@ -1,1 +1,27 @@
-<p>create-page works!</p>
+<form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Название товара:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="formData.name" required>
+    </div>
+    <div>
+      <label for="subCategoryId">Категория товара:</label>
+      <input type="text" id="subCategoryId" name="subCategoryId" [(ngModel)]="formData.subCategoryId" required>
+    </div>
+    <div>
+      <label for="description">Описание товара:</label>
+      <input type="text" id="description" name="description" [(ngModel)]="formData.description" required>
+    </div>
+    <div>
+      <label for="location">Месторасположение:</label>
+      <input type="text" id="location" name="location" [(ngModel)]="formData.location" required>
+    </div>
+    <div>
+      <label for="password">Стоимость:</label>
+      <input type="text" id="price" name="price" [(ngModel)]="formData.price" required>
+    </div>
+    <button type="submit">Создать товар</button>
+  </form>
+
+<div style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center">
+    <div *ngIf="responseMessage" style="text-align: center">{{ responseMessage }}</div>
+</div>
