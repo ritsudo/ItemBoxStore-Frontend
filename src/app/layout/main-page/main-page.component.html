@@ -16,11 +16,16 @@
 
   <div class="items-grid">
     <div class="item" *ngFor="let item of items">
+      
+    <a href = "/detail-page;id={{item.id}}">
       <img src="{{apiUrl}}/StorageFile/{{item.mainImageId}}" width="300" height="300" alt="Item 1">
+      
       <h2>{{item.name}}</h2>
       <p class="price">{{item.price}}.00₽</p>
       <p><b>{{category[item.subCategoryId]}}</b><br />
         {{item.location}}</p>
+        
+    </a>
     </div>
   </div>
 

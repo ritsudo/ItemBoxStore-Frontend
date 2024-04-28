@@ -24,4 +24,14 @@
 
 <div style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center">
     <div *ngIf="responseMessage" style="text-align: center">{{ responseMessage }}</div>
+    <div *ngIf="nextButtonShown">
+      {{responseItemId}}
+      <div>
+        <input type="file" (change)="onFileSelected($event)" />
+        <button (click)="uploadFile()">Загрузить</button>
+      </div>
+      <div *ngIf="responseMessage2" style="text-align: center">{{ responseMessage2 }}</div>
+      
+      <a href="/">На главную</a>
+    </div>
 </div>

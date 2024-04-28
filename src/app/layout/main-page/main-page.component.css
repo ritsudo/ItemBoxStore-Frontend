@@ -149,3 +149,8 @@
 .show-by-dropdown button:hover {
   background-color: #0056b3;
 }
+
+a, a:visited {
+  color: black;
+  text-decoration: none;
+}

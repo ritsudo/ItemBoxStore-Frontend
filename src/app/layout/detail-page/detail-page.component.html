@@ -1,1 +1,28 @@
-<p>detail-page works!</p>
+<div class="container">
+    <div class="item">
+      <div class="item-image">
+        <img src="{{apiUrl}}/StorageFile/{{itemData.mainImageId}}" alt="Картинка предмета">
+      </div>
+      <div class="item-details">
+        <div class="item-info">
+          <h2 class="item-name">{{itemData.name}}</h2>
+          <p class="item-id">Дата публикации: {{itemData.createdAt}}</p>
+          <p class="item-id">ID объявления: {{itemId}}</p>
+          <p class="item-price" style="color: #8585ff">{{itemData.price}}₽</p>
+          <p class="item-category">Категория: {{category[itemData.subCategoryId]}}</p>
+          <p class="item-description">{{itemData.description}}</p>
+          <p class="item-location">{{itemData.location}}</p>
+          <div class="author-info">
+            <img src="{{apiUrl}}/StorageFile/{{itemData.authorAvatarId}}" alt="Аватарка автора">
+            <p class="author-name">{{itemData.authorName}}</p>
+          </div>
+          <button (click)="call()" type="submit">Позвонить</button>
+          <div *ngIf="authorPhoneShow">
+            <p class="author-phone">Номер автора: {{itemData.authorPhone}}</p></div>
+        </div>
+      </div>
+      
+    <button (click)="deleteItem()" class="button-red" type="submit">Удалить</button>
+
+    </div>
+  </div>

@@ -30,7 +30,6 @@ export class LoginPageComponent {
   constructor (
     private loginService: LoginService,
     private route: ActivatedRoute,
-    private router: Router,
     private cookieService: CookieService,
   ) {
   }
