@@ -5,6 +5,7 @@ import { categories } from '../../dto/categories';
 import { backendUrl } from '../../app.config';
 import { DetailedItemService } from '../../services/item/detailedItem';
 import { CommonModule } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-detail-page',
@@ -36,9 +37,13 @@ export class DetailPageComponent {
 
   itemId: string = '';
 
+  deleteDetailsShow = false;
+  deleteResponseMessage: string = "";
+
   constructor (
     private route: ActivatedRoute,
-    private detailedItemService: DetailedItemService) {
+    private detailedItemService: DetailedItemService,
+    private cookieService: CookieService) {
     
   }
 
@@ -47,7 +52,17 @@ export class DetailPageComponent {
   }
 
   deleteItem() {
-    //TODO
+    
+    this.detailedItemService.deleteItemById(this.itemId, this.cookieService.get('JWT'))
+    .subscribe(
+      response => {
+      this.deleteResponseMessage = `HTTP - удалено успешно...`;
+      this.deleteDetailsShow = true;
+    },
+    error => {
+        this.deleteResponseMessage = `HTTP ошибка код ответа: ${error.status} (не авторизирован/нет прав на удаление)`;
+        this.deleteDetailsShow = true;
+    });
   }
 
   trimData(str: string) {

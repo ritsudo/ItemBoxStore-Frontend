@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { backendUrl } from '../../app.config';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
+import { jwtDecode } from "jwt-decode";
 
 @Component({
   selector: 'app-navbar',
@@ -16,13 +17,22 @@ export class NavbarComponent {
   
   apiUrl = backendUrl;
   jwtLength: number = 0;
+  userName = "test";
 
   constructor (
     private cookieService: CookieService) {
   }
 
   ngOnInit() {
-    this.jwtLength = this.cookieService.get('JWT').length;
+    const jwt = this.cookieService.get('JWT');
+
+    if (jwt) {
+      this.jwtLength = jwt.length;
+      
+      const decodedToken : any = jwtDecode(jwt);
+      console.log(decodedToken);
+      this.userName = decodedToken.UserName;
+    }
   }
 
   logout() {

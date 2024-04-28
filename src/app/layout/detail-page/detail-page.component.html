@@ -23,6 +23,9 @@
       </div>
       
     <button (click)="deleteItem()" class="button-red" type="submit">Удалить</button>
-
+    <div *ngIf="deleteDetailsShow" style="text-align: center">{{ deleteResponseMessage }}</div>
+    <div *ngIf="deleteDetailsShow">
+      <a href="/">На главную</a>
+    </div>
     </div>
   </div>

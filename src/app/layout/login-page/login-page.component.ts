@@ -27,7 +27,7 @@ export class LoginPageComponent {
   responseToken: string = '';
 
 
-  constructor (
+  constructor(
     private loginService: LoginService,
     private route: ActivatedRoute,
     private cookieService: CookieService,
@@ -35,31 +35,38 @@ export class LoginPageComponent {
   }
 
   continueAuthorization() {
-    this.cookieService.set('JWT', this.responseToken);
+    // Assuming this is where you create your JWT
+    const expirationTime = 50 * 60 * 1000; // 50 minutes in milliseconds
+
+    // Calculate expiration date
+    const expirationDate = new Date();
+    expirationDate.setTime(expirationDate.getTime() + expirationTime);
+    
+    this.cookieService.set('JWT', this.responseToken, expirationDate);
   }
 
   onSubmit() {
     this.loginService
-    .submitForm(this.formData)
-    .subscribe(
-      response => {
-        console.log(response);
-      this.responseMessage = `HTTP вход успешен, токен JWT получен. Длина токена: ${response.token.length}. Токен: ${response.token.substring(0, 10)}...`;
-      this.responseToken = response.token;
-      this.cookieService.set('JWT', this.responseToken);
-      this.nextButtonShown = true;
-    },
-    error => {
-      if (error.error instanceof ErrorEvent) {
-        // Client-side error
-        this.responseMessage = `Ошибка: ${error.error.message}`;
-        this.nextButtonShown = false;
-      } else {
-        // Server-side error
-        this.responseMessage = `HTTP код ответа: ${error.status}, Сообщение об ошибке: ${JSON.stringify(error.error)}`;
-        this.nextButtonShown = false;
-      }
-    });
+      .submitForm(this.formData)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.responseMessage = `HTTP вход успешен, токен JWT получен. Длина токена: ${response.token.length}. Токен: ${response.token.substring(0, 10)}...`;
+          this.responseToken = response.token;
+          this.cookieService.set('JWT', this.responseToken);
+          this.nextButtonShown = true;
+        },
+        error => {
+          if (error.error instanceof ErrorEvent) {
+            // Client-side error
+            this.responseMessage = `Ошибка: ${error.error.message}`;
+            this.nextButtonShown = false;
+          } else {
+            // Server-side error
+            this.responseMessage = `HTTP код ответа: ${error.status}, Сообщение об ошибке: ${JSON.stringify(error.error)}`;
+            this.nextButtonShown = false;
+          }
+        });
   }
 
   ngOnInit() {
