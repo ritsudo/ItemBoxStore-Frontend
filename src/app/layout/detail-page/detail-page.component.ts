@@ -65,10 +65,6 @@ export class DetailPageComponent {
     });
   }
 
-  trimData(str: string) {
-    return str.substring(0, 16);
-  }
-
 
   ngOnInit() {
     const itemId = this.route.snapshot.paramMap.get('id');
@@ -78,7 +74,6 @@ export class DetailPageComponent {
       this.itemData = response;
 
       const createdAt = this.itemData.createdAt;
-      this.itemData.createdAt = this.trimData(createdAt);
     });
 
   }

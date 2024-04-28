@@ -48,7 +48,7 @@ export class MainPageComponent {
       this.updatedItems = response;
       console.log(this.updatedItems);
       for (let i = 0; i < this.updatedItems.length; i+=1) {
-        this.items.push(new Item(this.updatedItems[i].id, this.updatedItems[i].name, this.updatedItems[i].subCategoryId, this.updatedItems[i].location, this.updatedItems[i].price, this.updatedItems[i].mainImageId
+        this.items.push(new Item(this.updatedItems[i].id, this.updatedItems[i].name, this.updatedItems[i].createdAt, this.updatedItems[i].subCategoryId, this.updatedItems[i].location, this.updatedItems[i].price, this.updatedItems[i].mainImageId
         ));
       }
     });
@@ -63,7 +63,7 @@ export class MainPageComponent {
       this.totalPages = response.totalPages;
       console.log(this.updatedItems);
       for (let i = 0; i < this.updatedItems.length; i+=1) {
-        this.items.push(new Item(this.updatedItems[i].id, this.updatedItems[i].name, this.updatedItems[i].subCategoryId, this.updatedItems[i].location, this.updatedItems[i].price, this.updatedItems[i].mainImageId
+        this.items.push(new Item(this.updatedItems[i].id, this.updatedItems[i].name, this.updatedItems[i].createdAt, this.updatedItems[i].subCategoryId, this.updatedItems[i].location, this.updatedItems[i].price, this.updatedItems[i].mainImageId
         ));
       }
     });

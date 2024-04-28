@@ -21,6 +21,10 @@ export class ItemService {
     return this.http.get<any>(`${this.apiUrl}/Item/by-name?Name=${name}`);
   }
 
+  getItemsByUserId(id: string) {
+    return this.http.get<any>(`${this.apiUrl}/Item/by-user-id/${id}`);
+  }
+
   getItems() {
     return this.http.get<any>(`${this.apiUrl}/Item/all`);
   }

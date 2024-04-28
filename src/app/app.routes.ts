@@ -4,11 +4,13 @@ import { RegisterPageComponent } from './layout/register-page/register-page.comp
 import { LoginPageComponent } from './layout/login-page/login-page.component';
 import { CreatePageComponent } from './layout/create-page/create-page.component';
 import { DetailPageComponent } from './layout/detail-page/detail-page.component';
+import { UserAdvertisementsComponent } from './layout/user-advertisements/user-advertisements.component';
 
 export const routes: Routes = [
     {path: '', component: MainPageComponent},
     {path: 'register', component: RegisterPageComponent},
     {path: 'login', component: LoginPageComponent},
     {path: 'create', component: CreatePageComponent},
-    {path: 'detail-page', component: DetailPageComponent}
+    {path: 'detail-page', component: DetailPageComponent},
+    {path: 'user-advertisements', component: UserAdvertisementsComponent}
 ];

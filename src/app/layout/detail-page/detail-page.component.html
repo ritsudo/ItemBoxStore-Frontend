@@ -6,7 +6,7 @@
       <div class="item-details">
         <div class="item-info">
           <h2 class="item-name">{{itemData.name}}</h2>
-          <p class="item-id">Дата публикации: {{itemData.createdAt}}</p>
+          <p class="item-id">Дата публикации: {{itemData.createdAt.substring(0,16)}}</p>
           <p class="item-id">ID объявления: {{itemId}}</p>
           <p class="item-price" style="color: #8585ff">{{itemData.price}}₽</p>
           <p class="item-category">Категория: {{category[itemData.subCategoryId]}}</p>
@@ -14,7 +14,7 @@
           <p class="item-location">{{itemData.location}}</p>
           <div class="author-info">
             <img src="{{apiUrl}}/StorageFile/{{itemData.authorAvatarId}}" alt="Аватарка автора">
-            <p class="author-name">{{itemData.authorName}}</p>
+            <a href="/user-advertisements;user-id={{itemData.authorId}}" class="author-name">{{itemData.authorName}}</a>
           </div>
           <button (click)="call()" type="submit">Позвонить</button>
           <div *ngIf="authorPhoneShow">

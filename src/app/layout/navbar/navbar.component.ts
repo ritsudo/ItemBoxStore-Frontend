@@ -17,7 +17,8 @@ export class NavbarComponent {
   
   apiUrl = backendUrl;
   jwtLength: number = 0;
-  userName = "test";
+  userName = "";
+  userId = "";
 
   constructor (
     private cookieService: CookieService) {
@@ -30,7 +31,7 @@ export class NavbarComponent {
       this.jwtLength = jwt.length;
       
       const decodedToken : any = jwtDecode(jwt);
-      console.log(decodedToken);
+      this.userId = decodedToken.UserId;
       this.userName = decodedToken.UserName;
     }
   }
