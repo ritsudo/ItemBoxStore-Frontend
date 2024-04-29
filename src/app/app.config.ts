@@ -8,4 +8,4 @@ export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideHttpClient()]
 };
 
-export const backendUrl = 'https://localhost:44315';
+export const backendUrl = 'http://localhost:5000';

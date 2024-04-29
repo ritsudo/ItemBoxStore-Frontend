@@ -5,7 +5,9 @@
     </div>
     <div>
       <label for="subCategoryId">Категория товара:</label>
-      <input type="text" id="subCategoryId" name="subCategoryId" [(ngModel)]="formData.subCategoryId" required>
+    <select class="subCategoryId" name="subCategoryId" [(ngModel)]="formData.subCategoryId">
+      <option *ngFor="let categoria of category" [value]="categoria.id">{{categoria.categoryName}}</option>
+    </select>
     </div>
     <div>
       <label for="description">Описание товара:</label>
@@ -32,6 +34,6 @@
       </div>
       <div *ngIf="responseMessage2" style="text-align: center">{{ responseMessage2 }}</div>
       
-      <a href="/detail-page;id={{responseItemId}}">К объявлению</a>
+      <a [routerLink]="['/detail-page']" [queryParams]="{id: responseItemId}">К объявлению</a>
     </div>
 </div>

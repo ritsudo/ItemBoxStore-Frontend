@@ -5,20 +5,24 @@ import { NewItemContract } from '../../contracts/newItemContract';
 import { NewItemService } from '../../services/newItem/newItem.service';
 import { CookieService } from 'ngx-cookie-service';
 import { FileService } from '../../services/file/file.service';
+import { RouterModule } from '@angular/router';
+import { categories } from '../../dto/categories';
 
 @Component({
   selector: 'app-create-page',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   providers: [CookieService],
   templateUrl: './create-page.component.html',
   styleUrl: './create-page.component.css'
 })
 export class CreatePageComponent {
+  category = categories;
+
   formData: NewItemContract = {
     name: '',
     subCategoryId: 5,
-    description: 'Default description',
+    description: 'Стандартное описание',
     location: 'Севастополь',
     price: 100
   };
@@ -36,7 +40,8 @@ export class CreatePageComponent {
   constructor(
     private newItemService: NewItemService,
     private cookieService: CookieService,
-    private fileService: FileService) {
+    private fileService: FileService
+  ) {
   }
 
   onFileSelected(event: any) {

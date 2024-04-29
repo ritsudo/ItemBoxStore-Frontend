@@ -7,12 +7,12 @@ import { GetAllResult } from '../../dto/getAllResult.model';
 import { backendUrl } from '../../app.config';
 import { categories } from '../../dto/categories';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-advertisements',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './user-advertisements.component.html',
   styleUrl: './user-advertisements.component.css'
 })
@@ -34,8 +34,9 @@ export class UserAdvertisementsComponent {
 
 
   ngOnInit(): void {
-    const login = this.route.snapshot.paramMap.get('user-id');
-    this.userId = login ? login : '';
+    this.route.queryParams.subscribe(params => {
+      this.userId = params['userid'];
+    });
 
     this.itemService.getItemsByUserId(this.userId).subscribe(response => {
       this.result = response;

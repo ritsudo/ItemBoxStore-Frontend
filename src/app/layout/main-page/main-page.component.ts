@@ -7,11 +7,12 @@ import { GetAllResult } from '../../dto/getAllResult.model';
 import { backendUrl } from '../../app.config';
 import { categories } from '../../dto/categories';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
 })

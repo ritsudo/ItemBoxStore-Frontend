@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { DetailedItem } from '../../dto/detailedItem.model';
 import { categories } from '../../dto/categories';
 import { backendUrl } from '../../app.config';
@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-detail-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './detail-page.component.html',
   styleUrl: './detail-page.component.css'
 })
@@ -67,8 +67,9 @@ export class DetailPageComponent {
 
 
   ngOnInit() {
-    const itemId = this.route.snapshot.paramMap.get('id');
-    this.itemId = itemId ? itemId : '';
+    this.route.queryParams.subscribe(params => {
+      this.itemId = params['id'];
+    });
 
     this.detailedItemService.getItemById(this.itemId).subscribe(response => {
       this.itemData = response;

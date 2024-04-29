@@ -9,12 +9,12 @@
           <p class="item-id">Дата публикации: {{itemData.createdAt.substring(0,16)}}</p>
           <p class="item-id">ID объявления: {{itemId}}</p>
           <p class="item-price" style="color: #8585ff">{{itemData.price}}₽</p>
-          <p class="item-category">Категория: {{category[itemData.subCategoryId]}}</p>
+          <p class="item-category">Категория: {{category[itemData.subCategoryId].categoryName}}</p>
           <p class="item-description">{{itemData.description}}</p>
           <p class="item-location">{{itemData.location}}</p>
           <div class="author-info">
             <img src="{{apiUrl}}/StorageFile/{{itemData.authorAvatarId}}" alt="Аватарка автора">
-            <a href="/user-advertisements;user-id={{itemData.authorId}}" class="author-name">{{itemData.authorName}}</a>
+            <a [routerLink]="['/user-advertisements']" [queryParams]="{userid: itemData.authorId}" class="author-name">{{itemData.authorName}}</a>
           </div>
           <button (click)="call()" type="submit">Позвонить</button>
           <div *ngIf="authorPhoneShow">
