@@ -74,13 +74,35 @@
     display: flex;
     padding: 10px; /* Adjust padding as needed */
   }
-  
+
   .search-input {
     font-size: 2em;
     flex: 1;
     padding: 8px; /* Adjust padding as needed */
     margin-right: 20px;
   }
+
+  @media only screen and (max-width: 600px) {
+    .search-container {
+        flex-direction: column; /* Set flex direction to column */
+        padding: 20px;
+    }
+
+    .search-input {
+      font-size: 2em;
+      flex: 1;
+      padding: 8px; /* Adjust padding as needed */
+      margin-right: 0px;
+    }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-gap: 60px;
+    }
+}
+  
+
   
   .search-button {
     font-size: 2em;
